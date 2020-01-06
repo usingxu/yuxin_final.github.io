@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>欣欣占卜屋</title>
+    
+    <!--self-defined css-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+    <!--jquery slide down or up-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script> 
+        $(document).ready(function(){
+            $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+            });
+        });
+    </script>
+    <style> 
+        #panel, #flip {
+            padding: 25px;
+            text-align: left;
+            color: #FFC900;
+            background-color: #920378;
+            border-radius: 5px;  
+        }
+        #panel {
+            padding: 50px;
+            display: none;
+        }
+    </style>
+
+
+</head>
+
+
+
+<body>
+    <!--banner-->
+    <div id="flip">欣欣占卜屋(´,,•ω•,,)♡</div>
+    <div id="panel">
+        先點選水晶球選擇想占卜的運勢 然後點選開始
+        <br>小女巫欣欣就會為你占卜今日運勢喔～
+    </div>
+
+    <!--buttons-->
+    <div class="buttonContainer">
+        <button class="button" onclick="health()" id="health">健康運</button>
+        <button class="button" onclick="career()" id="career">事業運</button>
+        <button class="button" onclick="relationship()" id="relationship">桃花運</button>
+    </div>
+
+    <!--main img-->
+    <img src="img/img1.png" alt="health" class="magicBall" id="changingImg">
+
+    <!--javascript onclick change img-->
+    <script>
+        var img = document.getElementById("changingImg");
+        function health(){
+            img.src='img/img1.png'
+        }
+        function career(){
+            img.src='img/img2.png'
+        }
+        function relationship(){
+            img.src='img/img3.png'
+        }
+    </script>
+
+    <!--result show-->
+    <div class="result"></div>
+    <div class="sentence"></div>
+
+    <!--start & restart button-->
+    <div class="buttonContainer">
+        <button class="button" id="start">開始占卜</button>
+        <button class="button" id="restart">我要重算</button>
+    </div>
+
+    <!--random result for health-->
+    <script>
+    $(document).ready(function(){
+        destinyHealth = new Array(3);
+        destinyHealth[0] = "吉";
+        destinyHealth[1] = "平";
+        destinyHealth[2] = "凶";
+
+        destinyHealthSentence = new Array(3);
+        destinyHealthSentence[0] = "吃飽又睡好，身體沒煩惱";
+        destinyHealthSentence[1] = "三層小肚腩，不好也不壞";
+        destinyHealthSentence[2] = "熬夜喝奶茶，頭髮掉光光";
+        
+        index = Math.floor(Math.random() * destinyHealth.length);//js亂數程式
+        index = Math.floor(Math.random() * destinyHealthSentence.length);//js亂數程式
+        
+        $('#health').on('click',function(e){
+            $('#start').on('click',function(e){
+                $('.result').append(destinyHealth[index]);
+                $('.sentence').append(destinyHealthSentence[index]);
+                $(this).remove();
+                $('#changingImg').remove();
+                $('#restart').show();
+            });
+            $('#restart').on('click',function(e){
+                location.reload(true);//刷新網頁
+            });
+        });      
+    });
+    </script>
+
+    <!--random result for career-->
+    <script>
+        $(document).ready(function(){
+            destinyCareer = new Array(3);
+            destinyCareer[0] = "吉";
+            destinyCareer[1] = "平";
+            destinyCareer[2] = "凶";
+    
+            destinyCareerSentence = new Array(3);
+            destinyCareerSentence[0] = "升官發財在眼前，榮華富貴看今朝";
+            destinyCareerSentence[1] = "腳踏實地才是真，安安穩穩過一生";
+            destinyCareerSentence[2] = "懷才不遇等一等，柳暗花明又一村";
+            
+            index = Math.floor(Math.random() * destinyCareer.length);//js亂數程式
+            index = Math.floor(Math.random() * destinyCareerSentence.length);//js亂數程式
+            
+            $('#career').on('click',function(e){
+                $('#start').on('click',function(e){
+                    $('.result').append(destinyCareer[index]);
+                    $('.sentence').append(destinyCareerSentence[index]);
+                    $(this).remove();
+                    $('#changingImg').remove();
+                    $('#restart').show();
+                });
+                $('#restart').on('click',function(e){
+                    location.reload(true);//刷新網頁
+                });
+            });      
+        });
+        </script>
+
+    <!--random result for relationship-->
+    <script>
+        $(document).ready(function(){
+            destinyRelationship = new Array(3);
+            destinyRelationship[0] = "吉";
+            destinyRelationship[1] = "平";
+            destinyRelationship[2] = "凶";
+    
+            destinyRelationshipSentence = new Array(3);
+            destinyRelationshipSentence[0] = "桃花朵朵開，人見惹人愛";
+            destinyRelationshipSentence[1] = "春天還沒來，但是也不遠";
+            destinyRelationshipSentence[2] = "戀愛沒意思，不如多賺錢";
+            
+            index = Math.floor(Math.random() * destinyRelationship.length);//js亂數程式
+            index = Math.floor(Math.random() * destinyRelationshipSentence.length);//js亂數程式
+            
+            $('#relationship').on('click',function(e){
+                $('#start').on('click',function(e){
+                    $('.result').append(destinyRelationship[index]);
+                    $('.sentence').append(destinyRelationshipSentence[index]);
+                    $(this).remove();
+                    $('#changingImg').remove();
+                    $('#restart').show();
+                });
+                $('#restart').on('click',function(e){
+                    location.reload(true);//刷新網頁
+                });
+            });      
+        });
+        </script>
+
+
+
+
+
+</body>
+
+</html>
